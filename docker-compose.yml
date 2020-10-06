@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  
+  mysql:
+    image: mysql:8.0.21
+    container_name: mysql_bancodigitalzup 
+    environment:
+      MYSQL_ROOT_PASSWORD: "MySql2020@"
+      MYSQL_DATABASE: "bancodigitalzup"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_bancodigitalzup:/var/lib/mysql
+    networks:
+      - banco_digital_zup_net
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - 8081:8080
+    depends_on:
+      - mysql
+    networks:
+      - banco_digital_zup_net
+
+volumes:
+  mysql_bancodigitalzup:
+    external: true
+
+networks:
+  banco_digital_zup_net:
+    external: true    

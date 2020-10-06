@@ -1,0 +1,2 @@
+docker network create --driver=bridge banco_digital_zup_net
+docker volume create mysql_bancodigitalzup
