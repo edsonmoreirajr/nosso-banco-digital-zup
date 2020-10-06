@@ -1,7 +1,15 @@
 package br.com.zup.nossobancodigitalzup.domain.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,8 +21,11 @@ import lombok.EqualsAndHashCode;
 public class FotoDocumento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private FotoDocumentoPK id;
+	@EqualsAndHashCode.Include
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="foto_documento_id", unique=true, nullable=false)
+	private Long fotoDocumentoId;
 
 	@Column(name="content_type", nullable=false, length=80)
 	private String contentType;
@@ -28,9 +39,8 @@ public class FotoDocumento implements Serializable {
 	@Column(nullable=false)
 	private int tamanho;
 
-	//bi-directional many-to-one association to Cliente
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="cliente_cpf_cnpj", nullable=false, insertable=false, updatable=false)
+	@JoinColumn(name="cliente_cpf_cnpj", nullable=false)
 	private Cliente cliente;
 
 }

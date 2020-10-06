@@ -1,0 +1,24 @@
+package br.com.zup.nossobancodigitalzup.api.v1_0.model.input;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+public class UsuarioInput {
+
+	@NotBlank
+	private String senha;
+
+	@NotBlank
+	private String status;
+	
+	@Valid
+	@NotNull
+	private ClienteIdInput cliente;
+	
+}

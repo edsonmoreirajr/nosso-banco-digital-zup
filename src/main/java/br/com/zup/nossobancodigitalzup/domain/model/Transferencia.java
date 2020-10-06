@@ -5,9 +5,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -23,8 +25,11 @@ import lombok.EqualsAndHashCode;
 public class Transferencia implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private TransferenciaPK id;
+	@EqualsAndHashCode.Include
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="transferencia_id", unique=true, nullable=false)
+	private Long transferenciaId;
 
 	@Column(nullable=false, length=6)
 	private String agencia;
@@ -39,7 +44,7 @@ public class Transferencia implements Serializable {
 	private String cpfCnpj;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="data_criacao_token", nullable=false, length=45)
+	@Column(name="data_criacao_token", nullable=false)
 	private Date dataCriacaoToken;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -61,10 +66,8 @@ public class Transferencia implements Serializable {
 	@Column(nullable=false, precision=10, scale=2)
 	private BigDecimal valor;
 
-	//bi-directional many-to-one association to Conta
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="conta_id_conta", nullable=false, insertable=false, updatable=false)
+	@JoinColumn(name="conta_id", nullable=false)
 	private Conta contaBean;
-
 
 }

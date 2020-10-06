@@ -18,8 +18,8 @@ public class Cliente implements Serializable {
 
 	@EqualsAndHashCode.Include
 	@Id
-	@Column(name="cpf_cnpj", unique=true, nullable=false, length=14)
-	private String cpfCnpj;
+	@Column(name="cliente_cpf_cnpj", unique=true, nullable=false, length=14)
+	private String clienteCpfCnpj;
 
 	@Column(nullable=false)
 	private byte ativo;
@@ -40,19 +40,15 @@ public class Cliente implements Serializable {
 	@Column(nullable=false, length=255)
 	private String sobrenome;
 
-	//bi-directional many-to-one association to Endereco
 	@OneToMany(mappedBy="cliente")
 	private Set<Endereco> enderecos;
 
-	//bi-directional many-to-one association to FotoDocumento
 	@OneToMany(mappedBy="cliente")
 	private Set<FotoDocumento> fotoDocumentos;
 
-	//bi-directional many-to-one association to Proposta
 	@OneToMany(mappedBy="cliente")
 	private Set<Proposta> propostas;
 
-	//bi-directional one-to-one association to Usuario
 	@OneToOne(mappedBy="cliente", fetch=FetchType.LAZY)
 	private Usuario usuario;
 

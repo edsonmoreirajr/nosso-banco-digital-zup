@@ -7,7 +7,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.zup.nossobancodigitalzup.core.validation.FileContentType;
 import br.com.zup.nossobancodigitalzup.core.validation.FileSize;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class FotoDocumentoInput {
 
 	@FileSize(max = "500KB")

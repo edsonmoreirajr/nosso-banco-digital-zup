@@ -26,19 +26,17 @@ public class Bairro implements Serializable {
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_bairro", unique=true, nullable=false)
-	private Long idBairro;
+	@Column(name="bairro_id", unique=true, nullable=false)
+	private Long bairroId;
 
 	@Column(nullable=false, length=60)
 	private String nome;
 
-	//bi-directional many-to-one association to Cidade
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="cidade_id", nullable=false)
 	private Cidade cidade;
 
-	//bi-directional many-to-one association to Endereco
-	@OneToMany(mappedBy="bairroBean")
+	@OneToMany(mappedBy="bairro")
 	private Set<Endereco> enderecos;
 
 }

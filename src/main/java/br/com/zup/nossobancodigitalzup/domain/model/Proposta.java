@@ -1,13 +1,23 @@
 package br.com.zup.nossobancodigitalzup.domain.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.util.Date;
-import java.util.Set;
 
 
 @Data
@@ -16,8 +26,11 @@ import java.util.Set;
 public class Proposta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private PropostaPK id;
+	@EqualsAndHashCode.Include
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="proposta_id", unique=true, nullable=false)
+	private Long propostaId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="data_proposta")
@@ -26,13 +39,11 @@ public class Proposta implements Serializable {
 	@Column(nullable=false, length=45)
 	private String status;
 
-	//bi-directional many-to-one association to Conta
 	@OneToMany(mappedBy="proposta")
 	private Set<Conta> contas;
 
-	//bi-directional many-to-one association to Cliente
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="cliente_cpf_cnpj", nullable=false, insertable=false, updatable=false)
+	@JoinColumn(name="cliente_cpf_cnpj", nullable=false)
 	private Cliente cliente;
 
 }

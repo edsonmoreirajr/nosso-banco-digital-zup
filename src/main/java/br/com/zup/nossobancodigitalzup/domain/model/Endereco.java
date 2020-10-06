@@ -3,9 +3,11 @@ package br.com.zup.nossobancodigitalzup.domain.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -18,8 +20,11 @@ import lombok.EqualsAndHashCode;
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private EnderecoPK id;
+	@EqualsAndHashCode.Include
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="endereco_id", unique=true, nullable=false)
+	private Long enderecoId;
 
 	@Column(nullable=false, length=8)
 	private String cep;
@@ -28,19 +33,17 @@ public class Endereco implements Serializable {
 	private String complemento;
 
 	@Column(nullable=false)
-	private Integer numero;
+	private int numero;
 
 	@Column(nullable=false, length=100)
 	private String rua;
 
-	//bi-directional many-to-one association to Bairro
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="bairro", nullable=false)
-	private Bairro bairroBean;
+	@JoinColumn(name="bairro_id", nullable=false)
+	private Bairro bairro;
 
-	//bi-directional many-to-one association to Cliente
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="cliente_cpf_cnpj", nullable=false, insertable=false, updatable=false)
+	@JoinColumn(name="cliente_cpf_cnpj", nullable=false)
 	private Cliente cliente;
 
 }

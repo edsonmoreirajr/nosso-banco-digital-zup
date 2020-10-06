@@ -4,6 +4,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class EnderecoInput {
 
 	@NotBlank
@@ -17,6 +22,10 @@ public class EnderecoInput {
 	
 	@NotBlank
 	private String rua;
+	
+	@Valid
+	@NotNull
+	private ClienteIdInput cliente;
 	
 	@Valid
 	@NotNull

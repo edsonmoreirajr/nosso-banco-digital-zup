@@ -10,5 +10,5 @@ import lombok.Setter;
 public class EstadoIdInput {
 
 	@NotNull
-	private Long idEstado;
+	private Long estadoId;
 }

@@ -3,10 +3,16 @@ package br.com.zup.nossobancodigitalzup.api.v1_0.model.input;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class TransferenciaInput {
 
 	@NotBlank
@@ -22,9 +28,6 @@ public class TransferenciaInput {
 	private String cpfCnpj;
 	
 	@NotNull
-	private Date dataCriacaoToken;
-	
-	@NotNull
 	private Date dataTransferencia;
 	
 	@NotBlank
@@ -36,11 +39,12 @@ public class TransferenciaInput {
 	@NotBlank
 	private String tipoConta;
 	
-	@NotBlank
-	private String token;
-	
 	@NotNull
 	@PositiveOrZero
 	private BigDecimal valor;
+	
+	@Valid
+	@NotNull
+	private ContaIdInput contaId;
 	
 }

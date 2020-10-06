@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 
 import java.util.Set;
 
+
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
@@ -17,8 +18,8 @@ public class Estado implements Serializable {
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_estado", unique=true, nullable=false)
-	private Long idEstado;
+	@Column(name="estado_id", unique=true, nullable=false)
+	private Long estadoId;
 
 	@Column(nullable=false, length=80)
 	private String nome;
@@ -26,7 +27,6 @@ public class Estado implements Serializable {
 	@Column(nullable=false, length=2)
 	private String sigla;
 
-	//bi-directional many-to-one association to Cidade
 	@OneToMany(mappedBy="estado")
 	private Set<Cidade> cidades;
 
