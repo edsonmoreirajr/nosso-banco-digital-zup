@@ -1,4 +1,6 @@
-package br.com.zup.nossobancodigitalzup.domain.exception;
+package br.com.zup.nossobancodigitalzup.domain.exception.in_use;
+
+import br.com.zup.nossobancodigitalzup.domain.exception.DomainException;
 
 public class EntidadeEmUsoException extends DomainException {
 

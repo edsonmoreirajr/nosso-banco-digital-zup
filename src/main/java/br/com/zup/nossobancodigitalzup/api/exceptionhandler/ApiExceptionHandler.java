@@ -31,7 +31,7 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.fasterxml.jackson.databind.exc.PropertyBindingException;
 
 import br.com.zup.nossobancodigitalzup.domain.exception.DomainException;
-import br.com.zup.nossobancodigitalzup.domain.exception.EntidadeEmUsoException;
+import br.com.zup.nossobancodigitalzup.domain.exception.in_use.EntidadeEmUsoException;
 import br.com.zup.nossobancodigitalzup.domain.exception.not_found.EntidadeNaoEncontradaException;
 import lombok.extern.slf4j.Slf4j;
 

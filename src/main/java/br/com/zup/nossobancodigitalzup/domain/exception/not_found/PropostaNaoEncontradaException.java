@@ -1,14 +1,14 @@
 package br.com.zup.nossobancodigitalzup.domain.exception.not_found;
 
-public class PropostaNaoEncontradoException extends EntidadeNaoEncontradaException {
+public class PropostaNaoEncontradaException extends EntidadeNaoEncontradaException {
 
 	private static final long serialVersionUID = 1L;
 
-	public PropostaNaoEncontradoException(String mensagem) {
+	public PropostaNaoEncontradaException(String mensagem) {
 		super(mensagem);
 	}
 	
-	public PropostaNaoEncontradoException(Long idProposta) {
+	public PropostaNaoEncontradaException(Long idProposta) {
 		this(String.format("Não existe um registro de uma proposta com o id %d", idProposta));
 	}
 	

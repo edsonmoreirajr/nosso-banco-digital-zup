@@ -3,7 +3,11 @@ package br.com.zup.nossobancodigitalzup.api.v1_0.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +26,7 @@ import br.com.zup.nossobancodigitalzup.api.v1_0.assembler.BairroModelAssembler;
 import br.com.zup.nossobancodigitalzup.api.v1_0.model.BairroModel;
 import br.com.zup.nossobancodigitalzup.api.v1_0.model.input.BairroInput;
 import br.com.zup.nossobancodigitalzup.domain.exception.DomainException;
+import br.com.zup.nossobancodigitalzup.domain.exception.not_found.BairroNaoEncontradoException;
 import br.com.zup.nossobancodigitalzup.domain.model.Bairro;
 import br.com.zup.nossobancodigitalzup.domain.service.BairroService;
 
@@ -38,53 +43,56 @@ public class BairroController {
 	@Autowired
 	private BairroInputDisassembler bairroInputDisassembler;
 	
+	@Autowired
+	private PagedResourcesAssembler<Bairro> pagedResourcesAssembler;
+	
 	@GetMapping
-	public CollectionModel<BairroModel> findAll() {
-		return null;
+	public PagedModel<BairroModel> listAll(@PageableDefault(size = 10) Pageable pageable) {
+		Page<Bairro> bairrosPage = bairroService.listAll(pageable);
+		PagedModel<BairroModel> bairrosPagedModel = pagedResourcesAssembler
+				.toModel(bairrosPage, bairroModelAssembler);
+		
+		return bairrosPagedModel;
 	}
 	
 	@GetMapping("/{bairroId}")
-	public BairroModel findById(@PathVariable Long idBairro) {
-		return null;
+	public BairroModel findById(@PathVariable Long bairroId) {
+		Bairro bairro = bairroService.findById(bairroId);
+		return bairroModelAssembler.toModel(bairro);
 	}
 	
-	/*@PostMapping
+	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public BairroModel add(@RequestBody @Valid BairroInput bairroInput) {
 		try {
 			Bairro bairro = bairroInputDisassembler.toDomainObject(bairroInput);
-			
-			bairro = bairroService.salvar(bairro);
-			
+			bairro = bairroService.save(bairro);
 			BairroModel bairroModel = bairroModelAssembler.toModel(bairro);
-			
-			ResourceUriHelper.addUriInResponseHeader(bairroModel.getId());
+			ResourceUriHelper.addUriInResponseHeader(bairroModel.getBairroId());
 			
 			return bairroModel;
-		} catch (CidadeNaoEncontradoException e) {
+		} catch (BairroNaoEncontradoException e) {
 			throw new DomainException(e.getMessage(), e);
 		}
-	}*/
+	}
 	
-	/*@PutMapping("/{bairroId}")
-	public BairroModel update(@PathVariable Long idBairro,
+	@PutMapping("/{bairroId}")
+	public BairroModel update(@PathVariable Long bairroId,
 			@RequestBody @Valid BairroInput bairroInput) {
 		try {
-			Bairro bairroAtual = bairroService.buscarOuFalhar(idBairro);
-			
+			Bairro bairroAtual = bairroService.findById(bairroId);
 			bairroInputDisassembler.copyToDomainObject(bairroInput, bairroAtual);
-			
-			bairroAtual = bairroService.salvar(bairroAtual);
+			bairroAtual = bairroService.save(bairroAtual);
 			
 			return bairroModelAssembler.toModel(bairroAtual);
-		} catch (CidadeNaoEncontradoException e) {
+		} catch (BairroNaoEncontradoException e) {
 			throw new DomainException(e.getMessage(), e);
 		}
 	}
 	
 	@DeleteMapping("/{bairroId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remove(@PathVariable Long idBairro) {
-		bairroService.excluir(idBairro);	
-	}*/
+	public void remove(@PathVariable Long bairroId) {
+		bairroService.remove(bairroId );	
+	}
 }

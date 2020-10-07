@@ -5,7 +5,7 @@ public class UsuarioNaoEncontradoException extends EntidadeNaoEncontradaExceptio
 	private static final long serialVersionUID = 1L;
 
 	public UsuarioNaoEncontradoException(String cpfCnpj) {
-		super(String.format("Não existe um registro de um usuario com o cpf ou cnpj %s", cpfCnpj));
+		super(String.format("Não existe um registro de um usuário com o cpf ou cnpj %s", cpfCnpj));
 	}
 	
 }
