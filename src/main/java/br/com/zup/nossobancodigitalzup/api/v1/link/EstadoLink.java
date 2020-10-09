@@ -5,9 +5,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.hateoas.Link;
+import org.springframework.stereotype.Component;
 
 import br.com.zup.nossobancodigitalzup.api.v1.controller.EstadoController;
 
+@Component
 public class EstadoLink extends ApiLink {
 
 	public Link linkToEstado(Long estadoId, String rel) {

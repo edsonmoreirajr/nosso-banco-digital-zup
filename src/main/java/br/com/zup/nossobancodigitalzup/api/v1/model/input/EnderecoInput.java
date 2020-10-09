@@ -4,6 +4,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import br.com.zup.nossobancodigitalzup.core.validation.Cep;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import lombok.Setter;
 public class EnderecoInput {
 
 	@NotBlank
+	@Cep
 	private String cep;
 	
 	@NotBlank

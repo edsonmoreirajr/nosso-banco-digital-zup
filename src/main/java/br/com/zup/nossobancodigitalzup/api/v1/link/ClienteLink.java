@@ -5,9 +5,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.hateoas.Link;
+import org.springframework.stereotype.Component;
 
 import br.com.zup.nossobancodigitalzup.api.v1.controller.ClienteController;
 
+@Component
 public class ClienteLink extends ApiLink {
 
 	public Link linkToCliente(String clienteCpfCnpj, String rel) {

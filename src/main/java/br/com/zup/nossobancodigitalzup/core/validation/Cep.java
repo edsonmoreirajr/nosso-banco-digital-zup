@@ -12,10 +12,10 @@ import javax.validation.Payload;
 
 @Target({ METHOD, FIELD})
 @Retention(RUNTIME)
-@Constraint(validatedBy = { DataNascimentoValidator.class })
-public @interface DataNascimento {
+@Constraint(validatedBy = { CnhValidator.class })
+public @interface Cep {
 
-	String message() default "Data de nascimento inválida. O cliente precisar ser maior de 18 anos.";
+	String message() default "CEP Inválido";
 
 	Class<?>[] groups() default { };
 

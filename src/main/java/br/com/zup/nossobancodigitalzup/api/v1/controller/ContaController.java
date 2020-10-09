@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -45,11 +44,6 @@ public class ContaController {
 	
 	@Autowired
 	private PagedResourcesAssembler<Conta> pagedResourcesAssembler;
-	
-	@GetMapping
-	public CollectionModel<ContaModel> findAll() {
-		return null;
-	}
 	
 	@GetMapping
 	public PagedModel<ContaModel> listAll(@PageableDefault(size = 10) Pageable pageable) {
