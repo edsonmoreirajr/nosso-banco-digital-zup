@@ -1,6 +1,6 @@
 package br.com.zup.nossobancodigitalzup.api.v1.model;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
@@ -14,7 +14,7 @@ import lombok.Setter;
 public class PropostaModel extends RepresentationModel<PropostaModel> implements Model {
 
 	private Long propostaId;
-	private Date dataProposta;
+	private OffsetDateTime dataProposta;
 	private String status;
 	private ClienteModel cliente;
 }

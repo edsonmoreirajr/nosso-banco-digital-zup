@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import br.com.zup.nossobancodigitalzup.api.v1.controller.PropostaController;
 
 @Component
-public class PropostaLink extends ApiLink {
+public class PropostaLink implements ApiLink {
 
 	public Link linkToProposta(Long propostaId, String rel) {
 		return linkTo(methodOn(PropostaController.class).findById(propostaId)).withRel(rel);

@@ -1,7 +1,7 @@
 package br.com.zup.nossobancodigitalzup.api.v1.model.input;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -28,7 +28,7 @@ public class TransferenciaInput {
 	private String cpfCnpj;
 	
 	@NotNull
-	private Date dataTransferencia;
+	private OffsetDateTime dataTransferencia;
 	
 	@NotBlank
 	private String descricao;

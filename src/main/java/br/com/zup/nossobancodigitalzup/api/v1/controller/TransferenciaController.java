@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.nossobancodigitalzup.api.ResourceUriHelper;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.TransferenciaInputDisassembler;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.TransferenciaModelAssembler;
 import br.com.zup.nossobancodigitalzup.api.v1.model.TransferenciaModel;
@@ -68,7 +67,6 @@ public class TransferenciaController {
 			Transferencia transferencia = transferenciaInputDisassembler.toDomainObject(transferenciaInput);
 			transferencia = transferenciaService.save(transferencia);
 			TransferenciaModel transferenciaModel = transferenciaModelAssembler.toModel(transferencia);
-			ResourceUriHelper.addUriInResponseHeader(transferenciaModel.getTransferenciaId());
 			
 			return transferenciaModel;
 		} catch (TransferenciaNaoEncontradaException e) {

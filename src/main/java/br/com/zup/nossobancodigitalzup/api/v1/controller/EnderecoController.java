@@ -68,7 +68,9 @@ public class EnderecoController {
 			Endereco endereco = enderecoInputDisassembler.toDomainObject(enderecoInput);
 			endereco = enderecoService.save(endereco);
 			EnderecoModel enderecoModel = enderecoModelAssembler.toModel(endereco);
-			ResourceUriHelper.addUriInResponseHeader(enderecoModel.getEnderecoId());
+			
+			String proximaEtapada = "v1/fotosdocumentos";
+			ResourceUriHelper.addUriInResponseHeader(proximaEtapada);
 			
 			return enderecoModel;
 		} catch (EnderecoNaoEncontradoException e) {

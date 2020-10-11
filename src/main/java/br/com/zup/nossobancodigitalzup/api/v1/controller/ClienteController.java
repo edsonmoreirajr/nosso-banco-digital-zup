@@ -55,9 +55,9 @@ public class ClienteController {
 		return clientesPagedModel;
 	}
 	
-	@GetMapping("/{clienteCpfCnpj}")
-	public ClienteModel findById(@PathVariable String clienteCpfCnpj) {
-		Cliente cliente = clienteService.findById(clienteCpfCnpj);
+	@GetMapping("/{cpfCnpj}")
+	public ClienteModel findById(@PathVariable String cpfCnpj) {
+		Cliente cliente = clienteService.findById(cpfCnpj);
 		return clienteModelAssembler.toModel(cliente);
 	}
 	
@@ -68,7 +68,9 @@ public class ClienteController {
 			Cliente cliente = clienteInputDisassembler.toDomainObject(clienteInput);
 			cliente = clienteService.save(cliente);
 			ClienteModel clienteModel = clienteModelAssembler.toModel(cliente);
-			ResourceUriHelper.addUriInResponseHeader(clienteModel.getClienteCpfCnpj());
+			
+			String proximaEtapada = "v1/enderecos";
+			ResourceUriHelper.addUriInResponseHeader(proximaEtapada);
 			
 			return clienteModel;
 		} catch (ClienteNaoEncontradoException e) {
@@ -76,11 +78,11 @@ public class ClienteController {
 		}
 	}
 	
-	@PutMapping("/{clienteCpfCnpj}")
-	public ClienteModel update(@PathVariable String clienteCpfCnpj,
+	@PutMapping("/{cpfCnpj}")
+	public ClienteModel update(@PathVariable String cpfCnpj,
 			@RequestBody @Valid ClienteInput clienteInput) {
 		try {
-			Cliente clienteAtual = clienteService.findById(clienteCpfCnpj);
+			Cliente clienteAtual = clienteService.findById(cpfCnpj);
 			clienteInputDisassembler.copyToDomainObject(clienteInput, clienteAtual);
 			clienteAtual = clienteService.save(clienteAtual);
 			
@@ -90,9 +92,9 @@ public class ClienteController {
 		}
 	}
 	
-	@DeleteMapping("/{clienteCpfCnpj}")
+	@DeleteMapping("/{cpfCnpj}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remove(@PathVariable String clienteCpfCnpj) {
-		clienteService.remove(clienteCpfCnpj );	
+	public void remove(@PathVariable String cpfCnpj) {
+		clienteService.remove(cpfCnpj );	
 	}
 }

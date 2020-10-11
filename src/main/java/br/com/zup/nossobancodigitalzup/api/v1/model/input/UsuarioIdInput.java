@@ -10,5 +10,5 @@ import lombok.Setter;
 public class UsuarioIdInput {
 
 	@NotNull
-	private String clienteCpfCnpj;
+	private String cpfCnpj;
 }

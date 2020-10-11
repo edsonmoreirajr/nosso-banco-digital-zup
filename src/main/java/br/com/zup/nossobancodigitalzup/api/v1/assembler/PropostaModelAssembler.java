@@ -33,7 +33,7 @@ public class PropostaModelAssembler extends RepresentationModelAssemblerSupport<
 		PropostaModel propostaModel = createModelWithId(proposta.getPropostaId(), proposta);
 		modelMapper.map(proposta, propostaModel);
 		propostaModel.add(propostaLink.linkToPropostas("propostas"));
-		propostaModel.getCliente().add(clienteLink.linkToCliente(propostaModel.getCliente().getClienteCpfCnpj()));
+		propostaModel.getCliente().add(clienteLink.linkToCliente(propostaModel.getCliente().getCpfCnpj()));
 
 		return propostaModel;
 	}

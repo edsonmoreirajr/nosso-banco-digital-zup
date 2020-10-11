@@ -2,7 +2,7 @@ package br.com.zup.nossobancodigitalzup.domain.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -43,13 +43,13 @@ public class Transferencia implements Serializable {
 	@Column(name="cpf_cnpj", nullable=false, length=14)
 	private String cpfCnpj;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@Column(name="data_criacao_token", nullable=false)
-	private Date dataCriacaoToken;
+	private OffsetDateTime dataCriacaoToken;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@Column(name="data_transferencia", nullable=false)
-	private Date dataTransferencia;
+	private OffsetDateTime dataTransferencia;
 
 	@Column(nullable=false, length=45)
 	private String descricao;

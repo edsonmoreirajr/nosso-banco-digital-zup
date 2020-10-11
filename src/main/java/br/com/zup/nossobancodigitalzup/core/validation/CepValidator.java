@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class CepValidator implements ConstraintValidator<Cep, String>{
+public class CepValidator implements ConstraintValidator<Cep, String> {
 
 	private Pattern pattern = Pattern.compile("[0-9]{5}-[0-9]{3}");
 
@@ -16,7 +16,10 @@ public class CepValidator implements ConstraintValidator<Cep, String>{
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext arg1) {
-		Matcher matcher = pattern.matcher(value);
-		return matcher.matches();
+		if (value != null) {
+			Matcher matcher = pattern.matcher(value);
+			return matcher.matches();
+		}
+		return false;
 	}
 }

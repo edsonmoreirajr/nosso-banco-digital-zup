@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import br.com.zup.nossobancodigitalzup.api.v1.controller.ContaController;
 
 @Component
-public class ContaLink extends ApiLink {
+public class ContaLink implements ApiLink {
 
 	public Link linkToConta(Long contaId, String rel) {
 		return linkTo(methodOn(ContaController.class).findById(contaId)).withRel(rel);

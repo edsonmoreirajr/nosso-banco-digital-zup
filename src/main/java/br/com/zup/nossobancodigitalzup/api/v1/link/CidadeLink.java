@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import br.com.zup.nossobancodigitalzup.api.v1.controller.CidadeController;
 
 @Component
-public class CidadeLink extends ApiLink {
+public class CidadeLink implements ApiLink {
 	
 	public Link linkToCidade(Long cidadeId, String rel) {
 		return linkTo(methodOn(CidadeController.class)

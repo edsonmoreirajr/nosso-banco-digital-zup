@@ -16,8 +16,9 @@ import lombok.Setter;
 @Getter
 public class ClienteInput {
 
+	@NotNull
 	@Valid
-	ClienteIdInput clienteCpfCnpj;
+	ClienteIdInput clienteId;
 	
 	@NotNull
 	private byte ativo;
@@ -40,7 +41,5 @@ public class ClienteInput {
 	@NotBlank
 	private String sobrenome;
 	
-	@NotNull
-	private Boolean pessoaJuridica;
 }
 

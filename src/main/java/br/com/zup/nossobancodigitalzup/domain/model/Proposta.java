@@ -1,7 +1,7 @@
 package br.com.zup.nossobancodigitalzup.domain.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.OffsetDateTime;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,8 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,9 +32,9 @@ public class Proposta implements Serializable {
 	@Column(name="proposta_id", unique=true, nullable=false)
 	private Long propostaId;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@Column(name="data_proposta")
-	private Date dataProposta;
+	private OffsetDateTime dataProposta;
 
 	@Column(nullable=false, length=45)
 	private String status;
@@ -43,7 +43,7 @@ public class Proposta implements Serializable {
 	private Set<Conta> contas;
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="cliente_cpf_cnpj", nullable=false)
+	@JoinColumn(name="cpf_cnpj", nullable=false)
 	private Cliente cliente;
 
 }

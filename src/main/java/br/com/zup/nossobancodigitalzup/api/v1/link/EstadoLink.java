@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import br.com.zup.nossobancodigitalzup.api.v1.controller.EstadoController;
 
 @Component
-public class EstadoLink extends ApiLink {
+public class EstadoLink implements ApiLink {
 
 	public Link linkToEstado(Long estadoId, String rel) {
 		return linkTo(methodOn(EstadoController.class).findById(estadoId)).withRel(rel);

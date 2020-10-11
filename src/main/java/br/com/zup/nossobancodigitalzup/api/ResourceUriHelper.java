@@ -14,13 +14,12 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ResourceUriHelper {
 
-	public static void addUriInResponseHeader(Object resourceId) {
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
-			.path("/{id}")
-			.buildAndExpand(resourceId).toUri();
-		
+	public static void addUriInResponseHeader(String proximaEtapda) {
 		HttpServletResponse response = ((ServletRequestAttributes) 
 				RequestContextHolder.getRequestAttributes()).getResponse();
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentServletMapping()
+		.path("/" + proximaEtapda).build().toUri();
 		
 		response.setHeader(HttpHeaders.LOCATION, uri.toString());
 	}

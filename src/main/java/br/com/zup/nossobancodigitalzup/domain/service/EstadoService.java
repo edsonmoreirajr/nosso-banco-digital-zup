@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.zup.nossobancodigitalzup.domain.exception.in_use.EstadoEmUsoException;
 import br.com.zup.nossobancodigitalzup.domain.exception.not_found.EstadoNaoEncontradoException;
 import br.com.zup.nossobancodigitalzup.domain.model.Estado;
 import br.com.zup.nossobancodigitalzup.domain.repository.EstadoRepository;
@@ -37,7 +38,7 @@ public class EstadoService {
 			throw new EstadoNaoEncontradoException(estadoId);
 		
 		} catch (DataIntegrityViolationException e) {
-			throw new EstadoNaoEncontradoException(estadoId);
+			throw new EstadoEmUsoException(estadoId);
 		}
 	}
 

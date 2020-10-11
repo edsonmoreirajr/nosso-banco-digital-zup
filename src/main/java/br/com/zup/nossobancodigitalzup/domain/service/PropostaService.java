@@ -29,8 +29,8 @@ public class PropostaService {
 	
 	@Transactional
 	public Proposta save(Proposta proposta) {
-		String clienteCpfCnpj = proposta.getCliente().getClienteCpfCnpj();
-		Cliente cliente = clienteService.findById(clienteCpfCnpj);
+		String cpfCnpj = proposta.getCliente().getCpfCnpj();
+		Cliente cliente = clienteService.findById(cpfCnpj);
 		proposta.setCliente(cliente);
 		
 		return propostaRepository.save(proposta);

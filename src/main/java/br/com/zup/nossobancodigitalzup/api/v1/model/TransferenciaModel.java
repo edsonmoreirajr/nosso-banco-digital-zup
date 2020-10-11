@@ -1,6 +1,7 @@
 package br.com.zup.nossobancodigitalzup.api.v1.model;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
@@ -23,4 +24,5 @@ public class TransferenciaModel extends RepresentationModel<TransferenciaModel> 
 	private String tipoConta;
 	private BigDecimal valor;
 	private ContaModel contaBean;
+	private OffsetDateTime dataTransferencia;
 }

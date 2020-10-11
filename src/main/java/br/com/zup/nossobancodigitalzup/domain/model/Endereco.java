@@ -43,7 +43,7 @@ public class Endereco implements Serializable {
 	private Bairro bairro;
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="cliente_cpf_cnpj", nullable=false)
+	@JoinColumn(name="cpf_cnpj", nullable=false)
 	private Cliente cliente;
 
 }

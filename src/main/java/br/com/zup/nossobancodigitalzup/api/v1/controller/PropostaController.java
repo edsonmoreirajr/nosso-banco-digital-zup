@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.nossobancodigitalzup.api.ResourceUriHelper;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.PropostaInputDisassembler;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.PropostaModelAssembler;
 import br.com.zup.nossobancodigitalzup.api.v1.model.PropostaModel;
@@ -68,7 +67,6 @@ public class PropostaController {
 			Proposta proposta = propostaInputDisassembler.toDomainObject(propostaInput);
 			proposta = propostaService.save(proposta);
 			PropostaModel propostaModel = propostaModelAssembler.toModel(proposta);
-			ResourceUriHelper.addUriInResponseHeader(propostaModel.getPropostaId());
 			
 			return propostaModel;
 		} catch (PropostaNaoEncontradaException e) {

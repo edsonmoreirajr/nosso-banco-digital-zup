@@ -5,11 +5,9 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,9 +21,8 @@ public class FotoDocumento implements Serializable {
 
 	@EqualsAndHashCode.Include
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="foto_documento_id", unique=true, nullable=false)
-	private Long fotoDocumentoId;
+	@Column(name = "cpf_cnpj", unique=true, nullable=false, length=14)
+	private String id;
 
 	@Column(name="content_type", nullable=false, length=80)
 	private String contentType;
@@ -37,10 +34,11 @@ public class FotoDocumento implements Serializable {
 	private String nomeArquivo;
 
 	@Column(nullable=false)
-	private int tamanho;
+	private Long tamanho;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="cliente_cpf_cnpj", nullable=false)
+	@OneToOne(fetch=FetchType.LAZY)
+	@MapsId
 	private Cliente cliente;
+
 
 }

@@ -18,8 +18,8 @@ public class Cliente implements Serializable {
 
 	@EqualsAndHashCode.Include
 	@Id
-	@Column(name="cliente_cpf_cnpj", unique=true, nullable=false, length=14)
-	private String clienteCpfCnpj;
+	@Column(name="cpf_cnpj", unique=true, nullable=false, length=14)
+	private String cpfCnpj;
 
 	@Column(nullable=false)
 	private byte ativo;
@@ -44,12 +44,6 @@ public class Cliente implements Serializable {
 	private Set<Endereco> enderecos;
 
 	@OneToMany(mappedBy="cliente")
-	private Set<FotoDocumento> fotoDocumentos;
-
-	@OneToMany(mappedBy="cliente")
 	private Set<Proposta> propostas;
-
-	@OneToOne(mappedBy="cliente", fetch=FetchType.LAZY)
-	private Usuario usuario;
 
 }

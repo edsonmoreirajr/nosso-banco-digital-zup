@@ -41,7 +41,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 	public static final String MSG_ERRO_GENERICA_USUARIO_FINAL
 		= "Ocorreu um erro interno inesperado no sistema. Tente novamente e se "
-				+ "o errora persistir, entre em contato com o administrador do sistema.";
+				+ "o erro persistir, entre em contato com o administrador do sistema.";
 	
 	@Autowired
 	private MessageSource messageSource;
@@ -254,7 +254,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	@ExceptionHandler(DomainException.class)
-	public ResponseEntity<?> handleNegocio(DomainException ex, WebRequest request) {
+	public ResponseEntity<?> handleDomain(DomainException ex, WebRequest request) {
 
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		ErrorType errorType = ErrorType.ERRO_NEGOCIO;

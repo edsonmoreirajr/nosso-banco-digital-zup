@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.nossobancodigitalzup.api.ResourceUriHelper;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.BairroInputDisassembler;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.BairroModelAssembler;
 import br.com.zup.nossobancodigitalzup.api.v1.model.BairroModel;
@@ -68,7 +67,6 @@ public class BairroController {
 			Bairro bairro = bairroInputDisassembler.toDomainObject(bairroInput);
 			bairro = bairroService.save(bairro);
 			BairroModel bairroModel = bairroModelAssembler.toModel(bairro);
-			ResourceUriHelper.addUriInResponseHeader(bairroModel.getBairroId());
 			
 			return bairroModel;
 		} catch (BairroNaoEncontradoException e) {

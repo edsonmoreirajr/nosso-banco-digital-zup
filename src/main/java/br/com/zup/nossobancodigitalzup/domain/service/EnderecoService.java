@@ -10,8 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.zup.nossobancodigitalzup.domain.exception.in_use.EnderecoEmUsoException;
 import br.com.zup.nossobancodigitalzup.domain.exception.not_found.EnderecoNaoEncontradoException;
-import br.com.zup.nossobancodigitalzup.domain.model.Endereco;
 import br.com.zup.nossobancodigitalzup.domain.model.Bairro;
+import br.com.zup.nossobancodigitalzup.domain.model.Cliente;
+import br.com.zup.nossobancodigitalzup.domain.model.Endereco;
 import br.com.zup.nossobancodigitalzup.domain.repository.EnderecoRepository;
 
 @Service
@@ -23,16 +24,21 @@ public class EnderecoService {
 	@Autowired
 	private BairroService bairroService;
 	
+	@Autowired
+	private ClienteService clienteService;
+	
 	public Page<Endereco> listAll(Pageable pageable) {
 		return enderecoRepository.findAll(pageable);
 	}
 	
 	@Transactional
 	public Endereco save(Endereco endereco) {
-		Long bairroId = endereco.getBairro().getBairroId();
-		Bairro bairro = bairroService.findById(bairroId);
-		endereco.setBairro(bairro);
+		Cliente cliente = clienteService.findById(endereco.getCliente().getCpfCnpj());
+		endereco.setCliente(cliente);	
 		
+		Bairro bairro = bairroService.findById(endereco.getBairro().getBairroId());
+		endereco.setBairro(bairro);
+				
 		return enderecoRepository.save(endereco);
 	}
 	

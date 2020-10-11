@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import br.com.zup.nossobancodigitalzup.api.v1.controller.EnderecoController;
 
 @Component
-public class EnderecoLink extends ApiLink {
+public class EnderecoLink implements ApiLink {
 
 	public Link linkToEndereco(Long enderecoId, String rel) {
 		return linkTo(methodOn(EnderecoController.class).findById(enderecoId)).withRel(rel);

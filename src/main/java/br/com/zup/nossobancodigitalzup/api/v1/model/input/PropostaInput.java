@@ -1,7 +1,5 @@
 package br.com.zup.nossobancodigitalzup.api.v1.model.input;
 
-import java.util.Date;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -13,9 +11,6 @@ import lombok.Setter;
 @Getter
 public class PropostaInput {
 
-	@NotNull
-	private Date dataProposta;
-	
 	@NotBlank
 	private String status;
 	

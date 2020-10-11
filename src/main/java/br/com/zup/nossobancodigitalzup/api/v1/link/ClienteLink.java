@@ -10,14 +10,14 @@ import org.springframework.stereotype.Component;
 import br.com.zup.nossobancodigitalzup.api.v1.controller.ClienteController;
 
 @Component
-public class ClienteLink extends ApiLink {
+public class ClienteLink implements ApiLink {
 
-	public Link linkToCliente(String clienteCpfCnpj, String rel) {
-		return linkTo(methodOn(ClienteController.class).findById(clienteCpfCnpj)).withRel(rel);
+	public Link linkToCliente(String cpfCnpj, String rel) {
+		return linkTo(methodOn(ClienteController.class).findById(cpfCnpj)).withRel(rel);
 	}
 
-	public Link linkToCliente(String clienteCpfCnpj) {
-		return linkToCliente(clienteCpfCnpj, IanaLinkRelations.SELF.value());
+	public Link linkToCliente(String cpfCnpj) {
+		return linkToCliente(cpfCnpj, IanaLinkRelations.SELF.value());
 	}
 
 	public Link linkToClientes(String rel) {

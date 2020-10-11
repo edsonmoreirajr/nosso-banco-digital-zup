@@ -29,8 +29,8 @@ public class UsuarioService {
 	
 	@Transactional
 	public Usuario save(Usuario usuario) {
-		String clienteCpfCnpj = usuario.getCliente().getClienteCpfCnpj();
-		Cliente cliente = clienteService.findById(clienteCpfCnpj);
+		String cpfCnpj = usuario.getCliente().getCpfCnpj();
+		Cliente cliente = clienteService.findById(cpfCnpj);
 		usuario.setCliente(cliente);
 		
 		return usuarioRepository.save(usuario);

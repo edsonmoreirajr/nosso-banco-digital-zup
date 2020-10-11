@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 public class ClienteModel extends RepresentationModel<ClienteModel> implements Model{
 
-	private String clienteCpfCnpj;
+	private String cpfCnpj;
 	private byte ativo;
 	private String cnh;
 	private Date dataNascimento;

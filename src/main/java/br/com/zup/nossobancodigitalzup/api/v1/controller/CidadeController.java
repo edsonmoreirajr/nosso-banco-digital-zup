@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.nossobancodigitalzup.api.ResourceUriHelper;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.CidadeInputDisassembler;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.CidadeModelAssembler;
 import br.com.zup.nossobancodigitalzup.api.v1.model.CidadeModel;
@@ -68,7 +67,6 @@ public class CidadeController {
 			Cidade cidade = cidadeInputDisassembler.toDomainObject(cidadeInput);
 			cidade = cidadeService.save(cidade);
 			CidadeModel cidadeModel = cidadeModelAssembler.toModel(cidade);
-			ResourceUriHelper.addUriInResponseHeader(cidadeModel.getCidadeId());
 			
 			return cidadeModel;
 		} catch (CidadeNaoEncontradaException e) {

@@ -25,11 +25,11 @@ public class EnderecoInput {
 	@NotBlank
 	private String rua;
 	
-	@Valid
 	@NotNull
+	@Valid
 	private ClienteIdInput cliente;
 	
-	@Valid
 	@NotNull
+	@Valid
 	private BairroIdInput bairro;
 }

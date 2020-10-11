@@ -17,8 +17,9 @@ import lombok.Setter;
 @GroupSequenceProvider(ClienteGroupSequenceProvider.class)
 public class ClienteIdInput {
 
+	@NotBlank
 	@CPF(groups = PessoaFisicaCpf.class)
 	@CNPJ(groups = PessoaJuridicaCnpj.class)
-	@NotBlank
-	private String clienteCpfCnpj;
+	private String cpfCnpj;
+	
 }

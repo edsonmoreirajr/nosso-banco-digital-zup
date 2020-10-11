@@ -37,7 +37,7 @@ public class EnderecoModelAssembler extends RepresentationModelAssemblerSupport<
 		EnderecoModel enderecoModel = createModelWithId(endereco.getEnderecoId(), endereco);
 		modelMapper.map(endereco, enderecoModel);
 		enderecoModel.add(enderecoLink.linkToEnderecos("enderecos"));
-		enderecoModel.getCliente().add(clienteLink.linkToCliente(enderecoModel.getCliente().getClienteCpfCnpj()));
+		enderecoModel.getCliente().add(clienteLink.linkToCliente(enderecoModel.getCliente().getCpfCnpj()));
 		enderecoModel.getBairro().add(bairroLink.linkToBairro(enderecoModel.getBairro().getBairroId()));
 
 		return enderecoModel;

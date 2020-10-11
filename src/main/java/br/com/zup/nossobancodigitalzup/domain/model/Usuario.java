@@ -1,16 +1,16 @@
 package br.com.zup.nossobancodigitalzup.domain.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,12 +24,12 @@ public class Usuario implements Serializable {
 	
 	@EqualsAndHashCode.Include
 	@Id
-	@Column(name="cliente_cpf_cnpj", unique=true, nullable=false, length=14)
-	private String clienteCpfCnpj;
+	@Column(name="cpf_cnpj", unique=true, nullable=false, length=14)
+	private String cpfCnpj;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@Column(name="data_criacao_token", nullable=false)
-	private Date dataCriacaoToken;
+	private OffsetDateTime dataCriacaoToken;
 
 	@Column(nullable=false, length=45)
 	private String senha;
@@ -41,7 +41,7 @@ public class Usuario implements Serializable {
 	private String token;
 
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="cliente_cpf_cnpj", nullable=false, insertable=false, updatable=false)
+	@MapsId
 	private Cliente cliente;
 
 }

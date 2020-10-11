@@ -26,7 +26,7 @@ public class ClienteModelAssembler extends RepresentationModelAssemblerSupport<C
 	
 	@Override
 	public ClienteModel toModel(Cliente cliente) {
-		ClienteModel clienteModel = createModelWithId(cliente.getClienteCpfCnpj(), cliente);
+		ClienteModel clienteModel = createModelWithId(cliente.getCpfCnpj(), cliente);
 		modelMapper.map(cliente, clienteModel);
      	clienteModel.add(clienteLink.linkToClientes("clientes"));
 		

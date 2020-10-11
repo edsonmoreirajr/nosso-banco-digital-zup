@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.nossobancodigitalzup.api.ResourceUriHelper;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.UsuarioInputDisassembler;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.UsuarioModelAssembler;
 import br.com.zup.nossobancodigitalzup.api.v1.model.UsuarioModel;
@@ -55,9 +54,9 @@ public class UsuarioController {
 		return usuariosPagedModel;
 	}
 	
-	@GetMapping("/{clienteCpfCnpj}")
-	public UsuarioModel findById(@PathVariable String clienteCpfCnpj) {
-		Usuario usuario = usuarioService.findById(clienteCpfCnpj);
+	@GetMapping("/{cpfCnpj}")
+	public UsuarioModel findById(@PathVariable String cpfCnpj) {
+		Usuario usuario = usuarioService.findById(cpfCnpj);
 		return usuarioModelAssembler.toModel(usuario);
 	}
 	
@@ -68,7 +67,6 @@ public class UsuarioController {
 			Usuario usuario = usuarioInputDisassembler.toDomainObject(usuarioInput);
 			usuario = usuarioService.save(usuario);
 			UsuarioModel usuarioModel = usuarioModelAssembler.toModel(usuario);
-			ResourceUriHelper.addUriInResponseHeader(usuarioModel.getClienteCpfCnpj());
 			
 			return usuarioModel;
 		} catch (UsuarioNaoEncontradoException e) {
@@ -77,10 +75,10 @@ public class UsuarioController {
 	}
 	
 	@PutMapping("/{usuarioId}")
-	public UsuarioModel update(@PathVariable String clienteCpfCnpj,
+	public UsuarioModel update(@PathVariable String cpfCnpj,
 			@RequestBody @Valid UsuarioInput usuarioInput) {
 		try {
-			Usuario usuarioAtual = usuarioService.findById(clienteCpfCnpj);
+			Usuario usuarioAtual = usuarioService.findById(cpfCnpj);
 			usuarioInputDisassembler.copyToDomainObject(usuarioInput, usuarioAtual);
 			usuarioAtual = usuarioService.save(usuarioAtual);
 			
@@ -92,7 +90,7 @@ public class UsuarioController {
 	
 	@DeleteMapping("/{usuarioId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remove(@PathVariable String clienteCpfCnpj) {
-		usuarioService.remove(clienteCpfCnpj);	
+	public void remove(@PathVariable String cpfCnpj) {
+		usuarioService.remove(cpfCnpj);	
 	}
 }

@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 public class UsuarioModel extends RepresentationModel<UsuarioModel> implements Model{
 
-	private String clienteCpfCnpj;
+	private String cpfCnpj;
 	private String status;
 	
 }

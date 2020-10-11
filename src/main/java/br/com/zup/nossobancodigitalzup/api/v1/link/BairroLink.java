@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import br.com.zup.nossobancodigitalzup.api.v1.controller.BairroController;
 
 @Component
-public class BairroLink extends ApiLink{
+public class BairroLink implements ApiLink{
 
 	public Link linkToBairro(Long bairroId, String rel) {
 		return linkTo(methodOn(BairroController.class)

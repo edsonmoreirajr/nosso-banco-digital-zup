@@ -26,7 +26,7 @@ public class UsuarioModelAssembler extends RepresentationModelAssemblerSupport<U
 	
 	@Override
 	public UsuarioModel toModel(Usuario usuario) {
-		UsuarioModel usuarioModel = createModelWithId(usuario.getClienteCpfCnpj(), usuario);
+		UsuarioModel usuarioModel = createModelWithId(usuario.getCpfCnpj(), usuario);
 		modelMapper.map(usuario, usuarioModel);
      	usuarioModel.add(usuarioLink.linkToUsuarios("usuarios"));
 		

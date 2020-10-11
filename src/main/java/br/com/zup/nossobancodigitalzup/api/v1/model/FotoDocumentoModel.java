@@ -11,5 +11,8 @@ import lombok.Setter;
 @Getter
 public class FotoDocumentoModel extends RepresentationModel<FotoDocumentoModel> implements Model {
 
-	
+	private String contentType;
+	private String descricao;
+	private String nomeArquivo;
+	private Integer tamanho;
 }

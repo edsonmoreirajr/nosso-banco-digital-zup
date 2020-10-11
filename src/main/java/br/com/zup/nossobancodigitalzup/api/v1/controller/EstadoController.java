@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.nossobancodigitalzup.api.ResourceUriHelper;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.EstadoInputDisassembler;
 import br.com.zup.nossobancodigitalzup.api.v1.assembler.EstadoModelAssembler;
 import br.com.zup.nossobancodigitalzup.api.v1.model.EstadoModel;
@@ -68,7 +67,6 @@ public class EstadoController {
 			Estado estado = estadoInputDisassembler.toDomainObject(estadoInput);
 			estado = estadoService.save(estado);
 			EstadoModel estadoModel = estadoModelAssembler.toModel(estado);
-			ResourceUriHelper.addUriInResponseHeader(estadoModel.getEstadoId());
 			
 			return estadoModel;
 		} catch (EstadoNaoEncontradoException e) {
